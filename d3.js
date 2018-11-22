@@ -70,7 +70,8 @@ d3.json("dataset.json")
       .data(booksByYear)
       .enter()
       .append("circle")
-      .attr("r", 5)
+      .style("fill", "#05386B")
+      .attr("r", 10)
       .attr("cx", d => {
         return Xscale(Number(d.key));
       })
@@ -98,11 +99,12 @@ d3.json("dataset.json")
       circle
         .enter()
         .append("circle")
-        .attr("r", 5)
+        .attr("r", 10)
         .attr("cx", 0)
         .attr("cy", 0)
         .transition()
         .duration(500)
+        .style("fill", "#05386B")
         .attr("cx", d => {
           return Xscale(Number(d.key));
         })
@@ -114,6 +116,7 @@ d3.json("dataset.json")
       circle
         .transition()
         .duration(500)
+        .style("fill", "#05386B")
         .attr("cx", d => {
           return Xscale(Number(d.key));
         })
