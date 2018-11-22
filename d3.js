@@ -53,6 +53,7 @@ d3.json("dataset.json")
     d3.select("form")
       .style("left", "16px")
       .style("top", "16px")
+      .attr("id", "formatFilter")
       .append("select")
       .on("change", onChange)
       .selectAll("option")
@@ -76,6 +77,36 @@ d3.json("dataset.json")
       .attr("cy", d => {
         return Yscale(formatNumbers(d));
       });
+
+    function onChange() {
+      let field = this.value;
+      console.log(field);
+      var svg = d3.select("svg");
+      var transition = svg.transition();
+
+      // op de y as heb ik hoeveelheden nodig van het specifieke formats
+      // op de x as worden de jaren geplot
+
+      // je haalt alle boeken op
+
+      // let newYScale = booksByYear.values.findIndex(x => x.key === field);
+      // if (newYScale !== -1) {
+      //   return d.values[newYScale].value.formatCount;
+      // } else {
+      //   return 0;
+      // }
+      // console.log(newYscale);
+      // let formatIndex = d.values.findIndex(x => x.key === format);
+
+      // let Yscale = booksByYear.values.findIndex(x => x.key === field);
+
+      transition
+        .selectAll("circle")
+        .attr("cx", 400)
+        .attr("cy", d => {
+          return Yscale(formatNumbers(d));
+        });
+    }
   })
   .catch(function(err) {
     throw err;
@@ -83,7 +114,6 @@ d3.json("dataset.json")
 // });
 function formatNumbers(d) {
   let format = "book";
-  // let format = document.getElementById("formatFilter").value;
   // console.log(format);
   // van titus: werkt dit?
   // let found = d.values.find(x => x.key === format);
@@ -95,17 +125,3 @@ function formatNumbers(d) {
     return 0;
   }
 }
-
-function onChange() {
-  console.log("onchange functie loopt", this.value);
-}
-// TODO
-// [] Label your axes
-// [] more ticks on the x-axis, per year
-// [] research tooltips on the circles
-
-// TODO FOR FORM AND INTERACTION
-// [x] maak form element in je html
-// [ ] maak alle dragers beschikbaar
-// [ ] maak je form zichtbaar met behulp van d3
-// [ ] Maak alle dragers zichtbaar in je selectmenu
