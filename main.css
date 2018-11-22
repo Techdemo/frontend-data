@@ -1,0 +1,11 @@
+.bar-chart {
+  background-color: #c7d9d9;
+}
+* {
+  font-family: monospace;
+}
+
+svg {
+  overflow: visible;
+  margin-left: 30px;
+}
