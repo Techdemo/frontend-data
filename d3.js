@@ -75,37 +75,54 @@ d3.json("dataset.json")
         return Xscale(Number(d.key));
       })
       .attr("cy", d => {
-        return Yscale(formatNumbers(d));
+        return Yscale(format(d, "book"));
       });
 
     function onChange() {
       let field = this.value;
-      console.log(field);
+
+      const byFormat = booksByYear
+        .map(year => ({
+          ...year,
+          values: year.values.filter(book => book.key == field)
+        }))
+        .filter(year => year.values.length > 0);
+      console.log(byFormat);
+      // newData =
+      // uit de data selecteren overeenkomst met field
+
       var svg = d3.select("svg");
-      var transition = svg.transition();
 
-      // op de y as heb ik hoeveelheden nodig van het specifieke formats
-      // op de x as worden de jaren geplot
+      const circle = svg.selectAll("circle").data(byFormat);
 
-      // je haalt alle boeken op
-
-      // let newYScale = booksByYear.values.findIndex(x => x.key === field);
-      // if (newYScale !== -1) {
-      //   return d.values[newYScale].value.formatCount;
-      // } else {
-      //   return 0;
-      // }
-      // console.log(newYscale);
-      // let formatIndex = d.values.findIndex(x => x.key === format);
-
-      // let Yscale = booksByYear.values.findIndex(x => x.key === field);
-
-      transition
-        .selectAll("circle")
-        .attr("cx", 400)
+      circle
+        .enter()
+        .append("circle")
+        .attr("r", 5)
+        .attr("cx", 0)
+        .attr("cy", 0)
+        .transition()
+        .duration(500)
+        .attr("cx", d => {
+          return Xscale(Number(d.key));
+        })
         .attr("cy", d => {
-          return Yscale(formatNumbers(d));
+          console.log(field, d);
+          return Yscale(format(d, field));
         });
+
+      circle
+        .transition()
+        .duration(500)
+        .attr("cx", d => {
+          return Xscale(Number(d.key));
+        })
+        .attr("cy", d => {
+          console.log(field, d);
+          return Yscale(format(d, field));
+        });
+
+      circle.exit().remove();
     }
   })
   .catch(function(err) {
@@ -113,12 +130,27 @@ d3.json("dataset.json")
   });
 // });
 function formatNumbers(d) {
-  let format = "book";
+  const format = "book";
   // console.log(format);
   // van titus: werkt dit?
   // let found = d.values.find(x => x.key === format);
   // return found ? found.value.formatCount : 0;
   let formatIndex = d.values.findIndex(x => x.key === format);
+  // console.log("format", d.values);
+  if (formatIndex !== -1) {
+    return d.values[formatIndex].value.formatCount;
+  } else {
+    return 0;
+  }
+}
+
+function format(d, format) {
+  // console.log(format);
+  // van titus: werkt dit?
+  // let found = d.values.find(x => x.key === format);
+  // return found ? found.value.formatCount : 0;
+  let formatIndex = d.values.findIndex(x => x.key === format);
+  // console.log("format", d.values);
   if (formatIndex !== -1) {
     return d.values[formatIndex].value.formatCount;
   } else {
