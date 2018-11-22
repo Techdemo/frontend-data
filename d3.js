@@ -1,22 +1,19 @@
 // const formatFilter = document.getElementById("formatFilter");
-// formatFilter.addEventListener("click", function() {
-
+// formatFilter.addEventListener("change", event => {
 d3.json("dataset.json")
   .then(data => {
     var booksByYear = d3
       .nest()
       .key(data => Number(data.Year))
       .key(data => data.format)
-      // .key(data => data.genre)
-      // .key(data => data.genre)
       .rollup(function(v) {
         return {
-          // format: v.format,
           formatCount: v.length
-          // return v.length;
         };
       })
       .entries(data);
+
+    var formats = [...new Set(data.map(x => x.format))];
 
     let body = d3.select("body");
     let svg = body
@@ -53,6 +50,18 @@ d3.json("dataset.json")
       .call(x_Axis);
     let yAxisGroup = svg.append("g").call(y_Axis);
 
+    d3.select("form")
+      .style("left", "16px")
+      .style("top", "16px")
+      .append("select")
+      .on("change", onChange)
+      .selectAll("option")
+      .data(formats)
+      .enter()
+      .append("option")
+      .attr("value", d => d)
+      .text(d => d);
+
     svg
       .selectAll("circle")
       .attr("cx", bookCount)
@@ -71,12 +80,11 @@ d3.json("dataset.json")
   .catch(function(err) {
     throw err;
   });
-
 // });
 function formatNumbers(d) {
-  // let format = "book";
-  let format = document.getElementById("formatFilter").value;
-  console.log(format);
+  let format = "book";
+  // let format = document.getElementById("formatFilter").value;
+  // console.log(format);
   // van titus: werkt dit?
   // let found = d.values.find(x => x.key === format);
   // return found ? found.value.formatCount : 0;
@@ -88,6 +96,9 @@ function formatNumbers(d) {
   }
 }
 
+function onChange() {
+  console.log("onchange functie loopt", this.value);
+}
 // TODO
 // [] Label your axes
 // [] more ticks on the x-axis, per year
