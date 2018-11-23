@@ -111,11 +111,14 @@ Om de cirkels aan te passen wanneer je een nieuwe value selecteert in het menu, 
 ## Todo
 
 - [ ] een form maken voor het filteren op genre
-- [ ] aan de algehele styling wat doen. Zo wil ik bijvoorbeeld de assen stijlen
+- [ ] aan de algehele styling wat doen. Zo wil ik bijvoorbeeld de assen stijlen. 
+- [ ] Meerdere genres of keuzes tegelijk kunnen tonen zodat de gebruiker meer op onderzoek kan gaan. 
 - [ ] De scatterplot kunnen koppelen aan een andere api die mij verteld wanneer belangrijke terroristische aanslagen hebben plaatsgevonden. Zo krijg je nog meer context over waar de cijfers vandaan kunnen komen. Het verteld meer een verhaal.
 - [ ] Mocht er voor dit bovenstaande geen geschikte API zijn dan kun je hier misschien zelf iets voor schrijven.
 
 ## Reflectie
+
+Opzich ben ik best tevreden met het eindresultaat. Ik denk dat ik dit keer beter ben omgegaan met tijdsplanning en dat gaf mij wat meer rust tijdens het maken van de opdracht. Daarnaast begin ik steeds beter om te gaan met mijn code als een groter geheel te zien. Voorheen kon ik nogal van functie naar functie lopen, in de hoop dat het dan nog zou werken. 
 
 Mensen die mij hebben geholpen :
 
