@@ -27,7 +27,7 @@ Eerst heb ik alle data opgehaald uit de Oba-api. Met behulp van de _Gissa scrape
 
 Vervolgens ben ik aan de slag gegaan met mijn D3 visualisatie. Het inladen van het JSON bestand zelf in mijn D3 script ging uiteraard vrij gemakkelijk. Om de data weer vervolgens op een fijne manier uit nest functie te krijgen vond ik vrij lastig. Ik zag niet meer hoe ik nou een bepaalde key of value op kon vragen. Uiteindelijk met hulp van Gijs Laarman is dit wel gelukt.
 
-##Product
+## Product
 
 Het product zelf is [hier](https://techdemo.github.io/frontend-data/) te vinden. Het is gehost op github pages en maakt gebruik van een statisch JSON bestand. Tot nu toe heb ik een filter aangebracht op het soort Format. Het is ook de bedoeling dat hier uiteindelijk nog een tweede filter bij komt waarmee je kan filter op het soort genre. Het lijkt mij interessant om te zien hoe de verhoudingen zijn tussen verschillende genres en de hoeveelheid jaren ten opzichte van het twin towers incident.
 
