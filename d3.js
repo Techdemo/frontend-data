@@ -1,5 +1,3 @@
-// const formatFilter = document.getElementById("formatFilter");
-// formatFilter.addEventListener("change", event => {
 d3.json("dataset.json")
   .then(data => {
     var booksByYear = d3
@@ -13,7 +11,7 @@ d3.json("dataset.json")
       })
       .entries(data);
 
-    var formats = [...new Set(data.map(x => x.format))];
+    let formats = [...new Set(data.map(x => x.format))];
 
     let body = d3.select("body");
     let svg = body
@@ -71,6 +69,7 @@ d3.json("dataset.json")
       .enter()
       .append("circle")
       .style("fill", "#05386B")
+      .style("opacity", "0.9")
       .attr("r", 10)
       .attr("cx", d => {
         return Xscale(Number(d.key));
@@ -89,8 +88,6 @@ d3.json("dataset.json")
         }))
         .filter(year => year.values.length > 0);
       console.log(byFormat);
-      // newData =
-      // uit de data selecteren overeenkomst met field
 
       var svg = d3.select("svg");
 
@@ -102,6 +99,7 @@ d3.json("dataset.json")
         .attr("r", 10)
         .attr("cx", 0)
         .attr("cy", 0)
+        .style("opacity", "0.9")
         .transition()
         .duration(500)
         .style("fill", "#05386B")
@@ -117,6 +115,7 @@ d3.json("dataset.json")
         .transition()
         .duration(500)
         .style("fill", "#05386B")
+        .style("opacity", "0.9")
         .attr("cx", d => {
           return Xscale(Number(d.key));
         })

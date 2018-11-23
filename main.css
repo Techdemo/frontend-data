@@ -36,3 +36,9 @@ select {
 option {
   font-size: 18px;
 }
+p {
+  color: #05386b;
+  font-weight: 800;
+  max-width: 75vw;
+  align-self: center;
+}
